@@ -3,6 +3,7 @@ package com.educandoweb.udmone.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -36,4 +37,12 @@ public class Order implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
+	
 }
+
+
+
+
+
+
+
