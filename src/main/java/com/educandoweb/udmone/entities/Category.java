@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,25 +22,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
-public class Category implements Serializable{
-	
+public class Category implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@Transient
+	@ManyToMany(mappedBy = "categories")
 	@Setter(AccessLevel.NONE)
 	private Set<Product> products = new HashSet<>();
-	
-	
+
 	public Category(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-
-	
 }
