@@ -8,25 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "tb_order_item")
-@NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
 public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Getter(AccessLevel.NONE)
-	@Setter(AccessLevel.NONE)
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
+
 	private Integer quantity;
 	private Double price;
 
@@ -47,7 +41,6 @@ public class OrderItem implements Serializable {
 		id.setOrder(order);
 	}
 
-	@JsonIgnore
 	public Product getProduct() {
 		return id.getProduct();
 	}
@@ -56,4 +49,19 @@ public class OrderItem implements Serializable {
 		id.setProduct(product);
 	}
 
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 }
